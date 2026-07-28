@@ -1,0 +1,7 @@
+cd micmod-fabric-1.20.1
+   git init
+   git add .
+   git commit -m "Mic Voicenator mod"
+   git branch -M main
+   git remote add origin https://github.com/SEU_USUARIO/SEU_REPO.git
+   git push -u origin main
