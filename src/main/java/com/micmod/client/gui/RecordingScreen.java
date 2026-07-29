@@ -75,8 +75,8 @@ public class RecordingScreen extends Screen {
 
     @Override
     protected void init() {
-        panelW = 290;
-        panelH = 216;
+        panelW = 320;
+        panelH = 236;
         panelX = (this.width - panelW) / 2;
         panelY = (this.height - panelH) / 2;
 
@@ -96,7 +96,7 @@ public class RecordingScreen extends Screen {
         barY = previewY + previewH + 6;
         barH = 8;
 
-        int iconSize = 20;
+        int iconSize = ICON_TEX_SIZE; // desenha no tamanho nativo da textura — evita distorcer a borda/bisel da arte ao reduzir
         int iconY = barY + barH + 22; // espaço livre abaixo do texto de tempo
         int totalIconsWidth = 4 * iconSize;
         int gap = (previewW - totalIconsWidth) / 3;
