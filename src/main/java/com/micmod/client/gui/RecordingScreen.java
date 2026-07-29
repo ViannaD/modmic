@@ -75,7 +75,7 @@ public class RecordingScreen extends Screen {
 
     @Override
     protected void init() {
-        panelW = 250;
+        panelW = 290;
         panelH = 216;
         panelX = (this.width - panelW) / 2;
         panelY = (this.height - panelH) / 2;
@@ -98,11 +98,12 @@ public class RecordingScreen extends Screen {
 
         int iconSize = 20;
         int iconY = barY + barH + 22; // espaço livre abaixo do texto de tempo
-        int gap = 8;
+        int totalIconsWidth = 4 * iconSize;
+        int gap = (previewW - totalIconsWidth) / 3;
         recordIcon = new int[]{previewX, iconY, iconSize};
         playIcon = new int[]{previewX + (iconSize + gap), iconY, iconSize};
         deleteIcon = new int[]{previewX + (iconSize + gap) * 2, iconY, iconSize};
-        muteIcon = new int[]{panelX + panelW - 10 - iconSize, iconY, iconSize};
+        muteIcon = new int[]{previewX + (iconSize + gap) * 3, iconY, iconSize};
 
         saveButton = ButtonWidget.builder(Text.literal("Salvar"), b -> saveRecording())
                 .dimensions(panelX + 10, panelY + panelH - 24, panelW - 20, 18)
@@ -263,16 +264,9 @@ public class RecordingScreen extends Screen {
     private void drawIconButton(DrawContext context, int[] bounds, Identifier texture, int mouseX, int mouseY) {
         int x = bounds[0], y = bounds[1], size = bounds[2];
         boolean hovered = isInside(x, y, size, size, mouseX, mouseY);
-        if (hovered) {
-            fillCircle(context, x + size / 2, y + size / 2, size / 2 + 2, 0x40FFFFFF);
-        }
         context.drawTexture(texture, x, y, 0f, 0f, size, size, ICON_TEX_SIZE, ICON_TEX_SIZE);
-    }
-
-    private static void fillCircle(DrawContext context, int cx, int cy, int radius, int color) {
-        for (int dy = -radius; dy <= radius; dy++) {
-            int dx = (int) Math.sqrt(Math.max(0, radius * radius - dy * dy));
-            context.fill(cx - dx, cy + dy, cx + dx + 1, cy + dy + 1, color);
+        if (hovered) {
+            context.drawBorder(x - 2, y - 2, size + 4, size + 4, 0xFFFFFFFF);
         }
     }
 
