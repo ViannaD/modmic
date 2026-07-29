@@ -69,14 +69,14 @@ public class RecordingScreen extends Screen {
     private int[] muteIcon;
 
     public RecordingScreen(LivingEntity entity) {
-        super(Text.literal("Mic Voicenator"));
+        super(Text.literal("MobTalk"));
         this.entity = entity;
     }
 
     @Override
     protected void init() {
-        panelW = 320;
-        panelH = 236;
+        panelW = 270;
+        panelH = 214;
         panelX = (this.width - panelW) / 2;
         panelY = (this.height - panelH) / 2;
 
@@ -96,7 +96,7 @@ public class RecordingScreen extends Screen {
         barY = previewY + previewH + 6;
         barH = 8;
 
-        int iconSize = ICON_TEX_SIZE; // desenha no tamanho nativo da textura — evita distorcer a borda/bisel da arte ao reduzir
+        int iconSize = 22; // menor que a textura nativa (32) — leve perda de nitidez, mas ainda legível
         int iconY = barY + barH + 22; // espaço livre abaixo do texto de tempo
         int totalIconsWidth = 4 * iconSize;
         int gap = (previewW - totalIconsWidth) / 3;
@@ -187,7 +187,7 @@ public class RecordingScreen extends Screen {
         context.fill(panelX - 1, panelY - 1, panelX + panelW + 1, panelY + panelH + 1, COLOR_PANEL_BORDER);
         context.fill(panelX, panelY, panelX + panelW, panelY + panelH, COLOR_PANEL_BG);
 
-        context.drawText(this.textRenderer, Text.literal("Drift's Mob Voicenator"), panelX + 10, panelY + 8, 0x404040, false);
+        context.drawText(this.textRenderer, Text.literal("MobTalk"), panelX + 10, panelY + 8, 0x404040, false);
 
         renderCategoryList(context, mouseX, mouseY);
         renderPreviewPanel(context, mouseX, mouseY, delta);
